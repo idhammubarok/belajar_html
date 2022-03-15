@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Multiple Input</title>
+</head>
+<body>
+	<h1>Multiple Input Form dengan HTML dan JQuery</h1>
+
+	<form>
+		<div id="pembungkus_nama">
+			<label>Nama :</label>
+			<input type="text" name="nama[]" id="nama_0" placeholder="Enter Nama"><br/>
+		</div>
+		<a href="#" onclick="increment()"> Tambah Nama</a>
+		<br/>
+		<br/>
+		<button type="submit">Save</button>
+
+	</form>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript">
+
+		var index = 0;
+
+		function increment(){
+			
+			var pembungkus = $("#pembungkus_nama");
+			var total_baris = 10;
+
+			if(this.index < total_baris){
+
+				index++;
+
+				var tambah_form = '<div id="hapus_baris_'+ index +'">'
+									+'<label>Nama :</label>'
+									+'<input type="text" name="nama[]" id="nama_'+index+'" placeholder="Enter Nama">'
+									+'<a href="#" onclick="decrement('+index+')"> Hapus</a>'
+								+'</div>';
+
+				$(pembungkus).append(tambah_form);
+			}
+		}
+
+		function decrement(index){
+
+			var konfirmasi = confirm("Apakah anda yakin ingin menghapus baris ini?");
+			if (konfirmasi) {
+				$("#hapus_baris_"+index).remove();
+			}else{
+				return;
+			}
+
+			
+		}
+	</script>
+</body>
+</html>
